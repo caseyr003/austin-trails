@@ -50,10 +50,10 @@ header {
 }
 
 .menu {
-   font-size: 48px;
+   font-size: 36px;
    position: absolute;
-   left: 20px;
-   top: 10px;
+   left: 10px;
+   top: 0px;
 }
 .menu:hover {
    color: #f1f1f1;
@@ -88,4 +88,30 @@ header {
 @media screen and (max-height: 450px) {
   .search {padding-top: 15px;}
   .search a {font-size: 18px;}
+}
+
+.search-box {
+   width: 90%;
+   padding: 8px 20px;
+   margin: 8px 5%;
+   display: inline-block;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   box-sizing: border-box;
+}
+
+.search-box:focus {
+   outline-color: #19d8b1;
+}
+
+input[type=submit] {
+   width: 100%;
+   font-size: 16px;
+   background-color: #02a0ea;
+   color: #fff;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   border-radius: 8px;
+   cursor: pointer;
 }

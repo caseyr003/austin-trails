@@ -1,3 +1,12 @@
+var locations = [
+       {title: "Walnut Creek Metropolitan Park", location: {lat: 30.399123, lng: -97.679489}},
+       {title: "Red Bud Isle", location: {lat: 30.290820, lng: -97.786839}},
+       {title: "Emma Long Metropolitan Park", location: {lat: 30.335234, lng: -97.838505}},
+       {title: "Barton Creek Greenbelt", location: {lat: 30.243167, lng: -97.800045}},
+       {title: "St. Edward's Park", location: {lat: 30.407556, lng: -97.791037}},
+       {title: "River Place Nature Trail", location: {lat: 30.356231, lng: -97.864022}}
+     ];
+
 var map;
 function initMap() {
 
@@ -324,14 +333,7 @@ function initMap() {
       styles: styles
    });
 
-   var locations = [
-          {title: "Walnut Creek Metropolitan Park", location: {lat: 30.399123, lng: -97.679489}},
-          {title: "Red Bud Isle", location: {lat: 30.290820, lng: -97.786839}},
-          {title: "Emma Long Metropolitan Park", location: {lat: 30.335234, lng: -97.838505}},
-          {title: "Barton Creek Greenbelt", location: {lat: 30.243167, lng: -97.800045}},
-          {title: "St. Edward's Park", location: {lat: 30.407556, lng: -97.791037}},
-          {title: "River Place Nature Trail", location: {lat: 30.356231, lng: -97.864022}}
-        ];
+
 
    var icon = 'img/marker.png'
 
@@ -349,7 +351,26 @@ function initMap() {
    }
 }
 
+var Location = function (data) {
+    "use strict";
+    this.name = ko.observable(data.title);
+};
+
 function AppViewModel() {
+   this.searchText = ko.observable("");
+
+   this.locationArray = ko.observableArray([]);
+   var self = this;
+    locations.forEach(function (location) {
+        self.locationArray.push(new Location(location));
+    });
+
+   self.filteredMarkers = ko.computed(function () {
+       var search = self.searchText().toLowerCase();
+       return ko.utils.arrayFilter(self.locationArray(), function (location) {
+           return location.name().toLowerCase().indexOf(search) >= 0;
+       });
+   });
 
 }
 

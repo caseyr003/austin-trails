@@ -16,7 +16,13 @@
 
       <div id="search" class="search">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
-        Search for stuff here
+        <label for="search-box">Search</label>
+        <input type="text" id="search-box" class="search-box" name="search-box" data-bind="textInput: searchText, event: {keyup: filteredMarkers}">
+        <p>Searching for: <strong data-bind="text: searchText"></strong></p>
+        <ul data-bind="foreach: filteredMarkers">
+           <li data-bind="text: name"></li>
+        </ul>
+
       </div>
 
 
