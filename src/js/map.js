@@ -319,7 +319,7 @@ function initMap() {
 
    // Constructor creates a new map - only center and zoom are required.
    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 30.32500, lng: -97.65000},
+      center: {lat: 30.399123, lng: -97.679489},
       zoom: 13,
       styles: styles
    });
@@ -333,6 +333,8 @@ function initMap() {
           {title: "River Place Nature Trail", location: {lat: 30.356231, lng: -97.864022}}
         ];
 
+   var icon = 'img/marker.png'
+
    for (var i = 0; i < locations.length; i++) {
       // Get the position from the location array.
       var position = locations[i].location;
@@ -341,7 +343,8 @@ function initMap() {
       var marker = new google.maps.Marker({
          position: position,
          map: map,
-         title: title
+         title: title,
+         icon: icon
       });
    }
 }
