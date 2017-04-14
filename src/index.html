@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <link type="text/css" rel="stylesheet" href="css/style.css" />
+   </head>
+   <body>
+      <header>
+         <span class="menu" onclick="openNav()">&#9776;</span>
+      </header>
+
+      <div class="map" id="map"></div>
+
+      <div id="search" class="search">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        Search for stuff here
+      </div>
+
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+      <script src="js/map.js"></script>
+      <script src="js/app.js"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyAuh0wxkwdaGD2_cDmuyIUUaaYzDmBjadw&v=3&callback=initMap"></script>
+   </body>
+</html>

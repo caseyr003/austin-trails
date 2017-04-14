@@ -1,0 +1,67 @@
+html,
+body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+}
+
+#map {
+   border-radius: 2px;
+   width: calc(100% - 40px);
+   height: calc(100% - 100px);
+   color: white;
+   margin: 20px;
+   box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+   transition: 0.5s;
+}
+
+header {
+   height: 40px;
+   margin: 10px;
+}
+
+.search {
+
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.search a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.search a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+.menu:hover {
+   color: #f1f1f1;
+   cursor: pointer;
+}
+
+.search .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .search {padding-top: 15px;}
+  .search a {font-size: 18px;}
+}
