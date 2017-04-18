@@ -77,7 +77,7 @@ header {
    transition: 0.5s;
 }
 
-.search .closebtn {
+.search .close-btn {
     position: absolute;
     top: 0;
     right: 25px;

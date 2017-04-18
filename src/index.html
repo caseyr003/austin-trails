@@ -21,12 +21,13 @@
       <div class="map" id="map"></div>
 
       <div id="search" class="search">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
+        <a class="close-btn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
         <label for="search-box">Search</label>
-        <input type="text" id="search-box" class="search-box" name="search-box" data-bind="textInput: searchText, event: {keyup: filteredMarkers}">
+        <input type="text" id="search-box" class="search-box" name="search-box" data-bind="textInput: searchText, valueUpdate: "afterkeydown", event: {keyup: filteredMarkers}">
         <p>Searching for: <strong data-bind="text: searchText"></strong></p>
-        <ul data-bind="foreach: filteredMarkers">
-           <li data-bind="text: name"></li>
+        <p><strong data-bind="text: error">></strong></p>
+        <ul data-bind="foreach: visibleArray">
+           <li data-bind="text: name, click: $parent.getInfo"></li>
         </ul>
 
       </div>

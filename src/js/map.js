@@ -9,6 +9,7 @@ function initMap() {
       styles: styles
    });
 
+
    // Start knockout.js after map loads
    ko.applyBindings(new AppViewModel());
 }
@@ -20,6 +21,16 @@ function createMarker(title, position) {
       map: map,
       title: title,
       icon: 'img/marker.png'
+   });
+
+   var contentString = '<div id="content" style="color:#000">' + marker.title + '</div>';
+
+   var infowindow = new google.maps.InfoWindow({
+     content: contentString
+   });
+
+   marker.addListener('click', function() {
+      infowindow.open(map, marker);
    });
 
    return marker;
