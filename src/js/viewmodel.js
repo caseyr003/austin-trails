@@ -67,6 +67,13 @@ function AppViewModel() {
             // Connect info window with marker
             location.marker.addListener('click', function() {
                infowindow.open(map, location.marker);
+
+               // Set marker to bounce when clicked unless already bouncing
+               if (location.marker.getAnimation() !== null) {
+                  location.marker.setAnimation(null);
+               } else {
+                  location.marker.setAnimation(google.maps.Animation.BOUNCE);
+               }
             });
          },
 
@@ -85,6 +92,13 @@ function AppViewModel() {
             // Connect info window with marker
             location.marker.addListener('click', function() {
                infowindow.open(map, location.marker);
+
+               // Set marker to bounce when clicked unless already bouncing
+               if (location.marker.getAnimation() !== null) {
+                  location.marker.setAnimation(null);
+               } else {
+                  location.marker.setAnimation(google.maps.Animation.BOUNCE);
+               }
             });
          }
       });
@@ -130,5 +144,12 @@ function AppViewModel() {
    self.getInfo = function(location) {
       map.setCenter(location.marker.position);
       map.setZoom(14);
+
+      // Set marker to bounce when clicked unless already bouncing
+      if (location.marker.getAnimation() !== null) {
+         location.marker.setAnimation(null);
+      } else {
+         location.marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
    }
 }

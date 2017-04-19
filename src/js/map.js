@@ -19,7 +19,8 @@ function createMarker(title, position) {
       position: position,
       map: map,
       title: title,
-      icon: 'img/marker.png'
+      icon: 'img/marker.png',
+      animation: google.maps.Animation.DROP
    });
 
    return marker;
