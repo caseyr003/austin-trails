@@ -4,6 +4,8 @@ This project is a web app built with Google Maps API, Foursquare API, HTML, CSS,
 and Bootstrap. It displays local dog hiking trails around the Austin, TX area
 and allows users to filter the results.
 
+You can find a working demo of this project [here](https://caseyr003.github.io/)
+
 ## Built With
 
 * [Bootstrap](http://getbootstrap.com/)
