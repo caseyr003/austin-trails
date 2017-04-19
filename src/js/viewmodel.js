@@ -1,20 +1,20 @@
 function AppViewModel() {
    // Set initial variables
    var self = this;
-   this.searchText = ko.observable("");
-   this.error = ko.observable("");
+   this.searchText = ko.observable('');
+   this.error = ko.observable('');
    this.locationArray = ko.observableArray([]);
    this.visibleArray = ko.observableArray([]);
    this.searchOpen = ko.observable(false);
 
    this.openSearch = function() {
       this.searchOpen(!this.searchOpen());
-   }
+   };
 
    // Create new Location instance from location array items
    locations.forEach(function (location) {
       // Create new instance
-      newLocation = new Location(location)
+      newLocation = new Location(location);
       // Create and save marker to created location
       newLocation.marker = createMarker(location.title, location.coordinates);
       // Add created location to arrays
@@ -26,7 +26,7 @@ function AppViewModel() {
    this.locationArray().forEach(function (location) {
       $.ajax({
          url: 'https://api.foursquare.com/v2/venues/' + location.id() + '?client_id=' + foursquare_id + '&client_secret=' + foursquare_secret +'&v=201701401&m=foursquare',
-         dataType: "json",
+         dataType: 'json',
          success: function (data) {
             var result = data.response.venue;
 
@@ -62,23 +62,21 @@ function AppViewModel() {
                                     '<p class="result-address">' + location.address() + '</p>' +
                                     '<p class="result-rating">' + location.rating() + '</p>' +
                                     '<p class="result-likes">' + location.likes() + '</p>' +
-                                '</div>'
+                                '</div>';
 
-            // Create new info window
-            var infowindow = new google.maps.InfoWindow({
-               content: contentString
-            });
-
-            // Connect info window with marker
+            // Display info and animate marker when clicked
             location.marker.addListener('click', function() {
-               infowindow.open(map, location.marker);
+               // Connect info window with marker and set content
+               info.open(map, location.marker);
+               info.setContent(contentString);
 
-               // Set marker to bounce when clicked unless already bouncing
-               if (location.marker.getAnimation() !== null) {
-                  location.marker.setAnimation(null);
-               } else {
-                  location.marker.setAnimation(google.maps.Animation.BOUNCE);
-               }
+               //Start bounce animation on marker
+               location.marker.setAnimation(google.maps.Animation.BOUNCE);
+
+               // Stop animation after 3 bounces
+               setTimeout(function () {
+                   location.marker.setAnimation(null);
+               }, 2100);
             });
          },
 
@@ -87,23 +85,22 @@ function AppViewModel() {
             // Create info window html without Foursquare data if error
             var contentString = '<div class="result-info">' +
                                     '<p class="result-title">' + location.title + '</p>' +
-                                '</div>'
+                                    '<p class="result-address">Foursquare Data Not Available</p>' +
+                                '</div>';
 
-            // Create new info window
-            var infowindow = new google.maps.InfoWindow({
-               content: contentString
-            });
-
-            // Connect info window with marker
+            // Display info and animate marker when clicked
             location.marker.addListener('click', function() {
-               infowindow.open(map, location.marker);
+               // Connect info window with marker and set content
+               info.open(map, location.marker);
+               info.setContent(contentString);
 
-               // Set marker to bounce when clicked unless already bouncing
-               if (location.marker.getAnimation() !== null) {
+               //Start bounce animation on marker
+               location.marker.setAnimation(google.maps.Animation.BOUNCE);
+
+               // Stop animation after 3 bounces
+               setTimeout(function () {
                   location.marker.setAnimation(null);
-               } else {
-                  location.marker.setAnimation(google.maps.Animation.BOUNCE);
-               }
+               }, 2100);
             });
          }
       });
@@ -134,11 +131,11 @@ function AppViewModel() {
       if (self.visibleArray().length == 0) {
 
          // Display no results error
-         self.error("No Results");
+         self.error('No Results');
       } else {
 
          // remove error message
-         self.error("");
+         self.error('');
          self.visibleArray().forEach(function (location) {
             location.marker.setVisible(true);
          });
@@ -147,14 +144,8 @@ function AppViewModel() {
 
    // Center map on marker when selected from list
    this.getInfo = function(location) {
-      map.setCenter(location.marker.position);
+      google.maps.event.trigger(location.marker, 'click');
+      map.panTo(location.marker.position);
       map.setZoom(14);
-
-      // Set marker to bounce when clicked unless already bouncing
-      if (location.marker.getAnimation() !== null) {
-         location.marker.setAnimation(null);
-      } else {
-         location.marker.setAnimation(google.maps.Animation.BOUNCE);
-      }
-   }
+   };
 }

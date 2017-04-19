@@ -1,4 +1,5 @@
 var map;
+var info;
 
 function initMap() {
    // Create map and center on Austin, TX with custom styling
@@ -7,6 +8,9 @@ function initMap() {
       zoom: 12,
       styles: styles
    });
+
+   // Create new info window
+   info = new google.maps.InfoWindow();
 
    // Start knockout.js after map loads
    ko.applyBindings(new AppViewModel());
@@ -24,4 +28,10 @@ function createMarker(title, position) {
    });
 
    return marker;
+}
+
+// Alert the user if google maps isn't working
+function mapError() {
+    "use strict";
+    alert("Google Maps is currently unavailable")
 }
