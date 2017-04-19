@@ -49,9 +49,13 @@ function AppViewModel() {
             // Save Foursquare photo url to location
             var photo = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
             if (photo.hasOwnProperty('prefix') && photo.hasOwnProperty('suffix')) {
-               var url = photo.prefix + '300x300' + photo.suffix;
-               location.photo(url || 'n/a');
+               var photourl = photo.prefix + '300x300' + photo.suffix;
+               location.photo(photourl || 'n/a');
             }
+
+            // Save Foursquare url to location
+            var url = result.hasOwnProperty('canonicalUrl') ? result.canonicalUrl : '';
+            location.url(url || 'n/a');
          },
 
          complete: function (data) {
@@ -62,6 +66,8 @@ function AppViewModel() {
                                     '<p class="result-address">' + location.address() + '</p>' +
                                     '<p class="result-rating">' + location.rating() + '</p>' +
                                     '<p class="result-likes">' + location.likes() + '</p>' +
+                                    '<p><a class="result-url" href="' + location.url() + '" target="_blank">Learn more on Foursquare</a></p>' +
+                                    '<p><img class="result-powered" src="img/foursquare-logo.png"></p>' +
                                 '</div>';
 
             // Display info and animate marker when clicked

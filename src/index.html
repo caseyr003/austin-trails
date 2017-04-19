@@ -39,11 +39,13 @@
 
          <!-- Display locations that match user input -->
          <div data-bind="foreach: visibleArray">
-            <div class="result-block overlay" data-bind="click: $parent.getInfo, style: { background: 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(\'' + photo() + '\')' }">
-               <p class="result-title" data-bind="text: title"></p>
+            <div class="result-block overlay" data-bind="style: { background: 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(\'' + photo() + '\')' }">
+               <p class="result-title" data-bind="click: $parent.getInfo, text: title"></p>
                <p class="result-address" data-bind="text: address"></p>
                <p class="result-rating" data-bind="text: rating"></p>
                <p class="result-likes" data-bind="text: likes"></p>
+               <p><a class="result-url url-btn" data-bind="attr: { href: url }" target="_blank">Learn more on Foursquare</a></p>
+               <p><img class="result-powered" src="img/foursquare-logo.png"></p>
             </div>
          </div>
       </div>

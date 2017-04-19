@@ -8,6 +8,7 @@ var Location = function (data) {
     this.rating = ko.observable('');
     this.likes = ko.observable('');
     this.photo = ko.observable('');
+    this.url = ko.observable('')
 };
 
 // Location Information

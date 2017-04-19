@@ -133,6 +133,34 @@ header {
    color: #19d8b1;
 }
 
+.result-url {
+   text-decoration: none;
+   border: 1px solid #ececec;
+   border-radius: 6px;
+   color: #19d8b1;
+   padding: 6px;
+   display: block;
+   margin: 0;
+   text-align: center;
+}
+
+.url-btn {
+   color: #fff;
+}
+
+.result-url:hover {
+   text-decoration: none;
+   border: 1px solid #19d8b1;
+   background-color: #19d8b1;
+   color: #fff;
+}
+
+.result-powered {
+   height: 24px;
+   display: block;
+   margin: auto;
+}
+
 .error {
    font-size: 18px;
    color: #686868;
