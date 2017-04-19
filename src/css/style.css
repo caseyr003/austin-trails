@@ -53,7 +53,7 @@ header {
    font-size: 36px;
    position: absolute;
    left: 10px;
-   top: 0px;
+   top: 10px;
 }
 .menu:hover {
    color: #f1f1f1;
@@ -102,6 +102,15 @@ header {
 
 .search-box:focus {
    outline-color: #19d8b1;
+}
+
+.result {
+   list-style-type: none;
+}
+
+.result:hover {
+   cursor: pointer;
+   color: #ececec;
 }
 
 input[type=submit] {
