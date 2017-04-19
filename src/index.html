@@ -22,17 +22,17 @@
 
       <div id="search" class="search">
         <a class="close-btn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
-        <label for="search-box">Search</label>
+        <label class="search-label" for="search-box">Search</label>
         <input type="text" id="search-box" class="search-box" name="search-box" data-bind="textInput: searchText, valueUpdate: "afterkeydown", event: {keyup: filteredMarkers}">
-        <p>Searching for: <strong data-bind="text: searchText"></strong></p>
-        <p><strong data-bind="text: error">></strong></p>
-        <ul data-bind="foreach: visibleArray">
-           <li class="result" data-bind="text: title, click: $parent.getInfo"></li>
-           <p><strong data-bind="text: address">></strong></p>
-           <p><strong data-bind="text: description">></strong></p>
-           <p><strong data-bind="text: url">></strong></p>
-           <hr>
-        </ul>
+        <p><strong class="error" data-bind="text: error"></strong></p>
+        <div data-bind="foreach: visibleArray">
+           <div class="result-block overlay" data-bind="click: $parent.getInfo, style: { background: 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(\'' + photo() + '\')' }">
+              <p class="result-title" data-bind="text: title"></p>
+              <p class="result-address" data-bind="text: address"></p>
+              <p class="result-rating" data-bind="text: rating"></p>
+              <p class="result-likes" data-bind="text: likes"></p>
+           </div>
+        </div>
 
       </div>
 

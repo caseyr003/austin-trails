@@ -4,8 +4,9 @@ var Location = function (data) {
     this.id = ko.observable(data.id);
     this.marker = ko.observable();
     this.address = ko.observable('');
-    this.description = ko.observable('');
-    this.url = ko.observable('');
+    this.rating = ko.observable('');
+    this.likes = ko.observable('');
+    this.photo = ko.observable('');
 };
 
 var locations = [

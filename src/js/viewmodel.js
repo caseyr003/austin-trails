@@ -24,17 +24,34 @@ function AppViewModel() {
                location.address(address.address || 'n/a');
             }
 
-            var description = result.hasOwnProperty('description') ? result.description : '';
-            location.description(description || 'n/a');
+            var rating = result.hasOwnProperty('rating') ? result.rating : '';
+            location.rating(rating || 'n/a');
 
-            var url = result.hasOwnProperty('url') ? result.url : '';
-            location.url(url || 'n/a');
+            var likes = result.hasOwnProperty('likes') ? result.likes : '';
+            if (likes.hasOwnProperty('summary')) {
+               location.likes(likes.summary || 'n/a');
+            }
+
+            var photo = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
+            if (photo.hasOwnProperty('prefix') && photo.hasOwnProperty('suffix')) {
+               var url = photo.prefix + '300x300' + photo.suffix;
+               location.photo(url || 'n/a');
+            }
+
+
 
          },
 
          complete: function (data) {
 
-            var contentString = '<div id="content" style="color:#000">' + location.title() + '<br>' + location.address() + '<br>' + location.description() + '<br>' + location.url() + '<br>'+ '</div>';
+            var contentString = '<div class="result-info">' +
+                                    '<p class="result-title">' + location.title() + '</p>' +
+                                    '<p class="result-address">' + location.address() + '</p>' +
+                                    '<p class="result-rating">' + location.rating() + '</p>' +
+                                    '<p class="result-likes">' + location.likes() + '</p>' +
+                                '</div>'
+
+
 
             var infowindow = new google.maps.InfoWindow({
                content: contentString
@@ -46,9 +63,11 @@ function AppViewModel() {
 
          },
 
-         // Alert the user on error. Set messages in the DOM and infowindow
+
          error: function (error) {
-            var contentString = '<div id="content" style="color:#000">' + location.title + '</div>';
+            var contentString = '<div class="result-info">' +
+                                    '<p class="result-title">' + location.title + '</p>' +
+                                '</div>'
 
             var infowindow = new google.maps.InfoWindow({
                content: contentString
@@ -86,7 +105,6 @@ function AppViewModel() {
    });
 
    self.getInfo = function(location) {
-      console.log(location);
       map.setCenter(location.marker.position);
       map.setZoom(14);
    }

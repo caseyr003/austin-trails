@@ -1,5 +1,4 @@
 var map;
-var markers = []
 
 function initMap() {
    // Constructor creates a new map - only center and zoom are required.
@@ -14,7 +13,7 @@ function initMap() {
 }
 
 function createMarker(title, position) {
-   // Create a marker per location, and put into markers array.
+
    var marker = new google.maps.Marker({
       position: position,
       map: map,
@@ -23,21 +22,4 @@ function createMarker(title, position) {
    });
 
    return marker;
-}
-
-// Sets the map on all markers in the array.
-function setMapOnAll() {
-   for (var i = 0; i < markers.length; i++) {
-      markers[i].setMap(map);
-   }
-}
-
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
-   setMapOnAll(null);
-}
-
-// Shows any markers currently in the array.
-function showMarkers() {
-   setMapOnAll(map);
 }
