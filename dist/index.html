@@ -7,7 +7,7 @@
 
       <!-- Title -->
       <title>Austin Dog Trails</title>
-      <link type="text/css" rel="stylesheet" href="css/app.min.css" />
+      <link rel="stylesheet" href="css/app.min.css" />
 
    </head>
    <body>
@@ -15,20 +15,20 @@
       <!-- Header Logo -->
       <header>
          <!-- Button to open search sidebar -->
-         <span class="menu" onclick="openNav()"><i class="fa fa-bars" aria-hidden="true"></i></span>
+         <span class="menu" data-bind="click: openSearch"><i class="fa fa-bars" aria-hidden="true"></i></span>
          <div class="logo">
-            <img class="logo-img" id="logo" src="img/logo.png">
+            <img class="logo-img" id="logo" src="img/logo.png" data-bind="css: { 'logo-img-search': searchOpen }">
             <h1 class="logo-title">Austin Dog Trails</h1>
          </div>
       </header>
 
       <!-- Div for Map API -->
-      <div class="map" id="map"></div>
+      <div class="map" id="map" data-bind="css: { 'map-search': searchOpen }"></div>
 
       <!-- Search Sidebar -->
-      <div id="search" class="search">
+      <div id="search" class="search" data-bind="css: { 'search-open': searchOpen }">
          <!-- Button to open search sidebar -->
-         <a class="close-btn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
+         <a class="close-btn" data-bind="click: openSearch"><i class="fa fa-times" aria-hidden="true"></i></a>
 
          <!-- User input to filter results -->
          <label class="search-label" for="search-box">Search</label>
@@ -52,7 +52,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script src="https://use.fontawesome.com/97c2efd779.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyAuh0wxkwdaGD2_cDmuyIUUaaYzDmBjadw&v=3&callback=initMap"></script>
       <script src="js/app.min.js"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyAuh0wxkwdaGD2_cDmuyIUUaaYzDmBjadw&v=3&callback=initMap" onerror="mapError()"></script>
    </body>
 </html>

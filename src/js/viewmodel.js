@@ -5,6 +5,11 @@ function AppViewModel() {
    this.error = ko.observable("");
    this.locationArray = ko.observableArray([]);
    this.visibleArray = ko.observableArray([]);
+   this.searchOpen = ko.observable(false);
+
+   this.openSearch = function() {
+      this.searchOpen(!this.searchOpen());
+   }
 
    // Create new Location instance from location array items
    locations.forEach(function (location) {
@@ -141,7 +146,7 @@ function AppViewModel() {
    });
 
    // Center map on marker when selected from list
-   self.getInfo = function(location) {
+   this.getInfo = function(location) {
       map.setCenter(location.marker.position);
       map.setZoom(14);
 
