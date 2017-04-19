@@ -8,9 +8,13 @@
       <!-- Title -->
       <title>Austin Dog Trails</title>
       <link type="text/css" rel="stylesheet" href="css/style.css" />
+
    </head>
    <body>
+
+      <!-- Header Logo -->
       <header>
+         <!-- Button to open search sidebar -->
          <span class="menu" onclick="openNav()"><i class="fa fa-bars" aria-hidden="true"></i></span>
          <div class="logo">
             <img class="logo-img" id="logo" src="img/logo.png">
@@ -18,24 +22,33 @@
          </div>
       </header>
 
+      <!-- Div for Map API -->
       <div class="map" id="map"></div>
 
+      <!-- Search Sidebar -->
       <div id="search" class="search">
-        <a class="close-btn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
-        <label class="search-label" for="search-box">Search</label>
-        <input type="text" id="search-box" class="search-box" name="search-box" data-bind="textInput: searchText, valueUpdate: "afterkeydown", event: {keyup: filteredMarkers}">
-        <p><strong class="error" data-bind="text: error"></strong></p>
-        <div data-bind="foreach: visibleArray">
-           <div class="result-block overlay" data-bind="click: $parent.getInfo, style: { background: 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(\'' + photo() + '\')' }">
-              <p class="result-title" data-bind="text: title"></p>
-              <p class="result-address" data-bind="text: address"></p>
-              <p class="result-rating" data-bind="text: rating"></p>
-              <p class="result-likes" data-bind="text: likes"></p>
-           </div>
-        </div>
+         <!-- Button to open search sidebar -->
+         <a class="close-btn" onclick="closeNav()"><i class="fa fa-times" aria-hidden="true"></i></a>
 
+         <!-- User input to filter results -->
+         <label class="search-label" for="search-box">Search</label>
+         <input type="text" id="search-box" class="search-box" name="search-box" data-bind="textInput: searchText, valueUpdate: "afterkeydown", event: {keyup: filteredMarkers}">
+
+         <!-- Display error if no results exist -->
+         <p><strong class="error" data-bind="text: error"></strong></p>
+
+         <!-- Display locations that match user input -->
+         <div data-bind="foreach: visibleArray">
+            <div class="result-block overlay" data-bind="click: $parent.getInfo, style: { background: 'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(\'' + photo() + '\')' }">
+               <p class="result-title" data-bind="text: title"></p>
+               <p class="result-address" data-bind="text: address"></p>
+               <p class="result-rating" data-bind="text: rating"></p>
+               <p class="result-likes" data-bind="text: likes"></p>
+            </div>
+         </div>
       </div>
 
+      <!-- Load JS files -->
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       <script src="https://use.fontawesome.com/97c2efd779.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>

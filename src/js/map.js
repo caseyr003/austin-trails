@@ -1,7 +1,7 @@
 var map;
 
 function initMap() {
-   // Constructor creates a new map - only center and zoom are required.
+   // Create map and center on Austin, TX with custom styling
    map = new google.maps.Map(document.getElementById('map'), {
       center: austin,
       zoom: 12,
@@ -12,6 +12,7 @@ function initMap() {
    ko.applyBindings(new AppViewModel());
 }
 
+// Returns new map marker from title and position
 function createMarker(title, position) {
 
    var marker = new google.maps.Marker({

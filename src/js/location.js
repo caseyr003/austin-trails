@@ -1,3 +1,4 @@
+// Create location class for knockout.js
 var Location = function (data) {
     "use strict";
     this.title = ko.observable(data.title);
@@ -9,6 +10,7 @@ var Location = function (data) {
     this.photo = ko.observable('');
 };
 
+// Location Information
 var locations = [
    {title: "Walnut Creek Metropolitan Park", id: "4ae37a96f964a520a39521e3", coordinates: {lat: 30.399123, lng: -97.679489}},
    {title: "Red Bud Isle", id: "49c1de70f964a520d7551fe3", coordinates: {lat: 30.290820, lng: -97.786839}},

@@ -1,5 +1,7 @@
+// Austin, TX coordinates to center map
 var austin = {lat: 30.2672, lng: -97.7431};
 
+// Custom style for map
 var styles = [
        {
            "elementType": "labels.text",
