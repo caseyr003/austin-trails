@@ -6,6 +6,7 @@ function AppViewModel() {
    this.locationArray = ko.observableArray([]);
    this.visibleArray = ko.observableArray([]);
    this.searchOpen = ko.observable(false);
+   this.dataUnavailable = ko.observable(true);
 
    this.openSearch = function() {
       this.searchOpen(!this.searchOpen());
@@ -28,7 +29,11 @@ function AppViewModel() {
          url: 'https://api.foursquare.com/v2/venues/' + location.id() + '?client_id=' + foursquare_id + '&client_secret=' + foursquare_secret +'&v=201701401&m=foursquare',
          dataType: 'json',
          success: function (data) {
+
             var result = data.response.venue;
+
+            // Set to false to display Foursquare data
+            self.dataUnavailable(false);
 
             // Save Foursquare address to location
             var address = result.hasOwnProperty('location') ? result.location : '';
@@ -56,9 +61,6 @@ function AppViewModel() {
             // Save Foursquare url to location
             var url = result.hasOwnProperty('canonicalUrl') ? result.canonicalUrl : '';
             location.url(url || 'n/a');
-         },
-
-         complete: function (data) {
 
             // Create info window html with Foursquare data once request is complete
             var contentString = '<div class="result-info">' +
@@ -90,7 +92,7 @@ function AppViewModel() {
 
             // Create info window html without Foursquare data if error
             var contentString = '<div class="result-info">' +
-                                    '<p class="result-title">' + location.title + '</p>' +
+                                    '<p class="result-title">' + location.title() + '</p>' +
                                     '<p class="result-address">Foursquare Data Not Available</p>' +
                                 '</div>';
 
@@ -134,7 +136,7 @@ function AppViewModel() {
       });
 
       // If no results for search display error otherwise display results
-      if (self.visibleArray().length == 0) {
+      if (self.visibleArray().length === 0) {
 
          // Display no results error
          self.error('No Results');

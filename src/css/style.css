@@ -161,6 +161,10 @@ header {
    margin: auto;
 }
 
+.hide {
+   display: none;
+}
+
 .error {
    font-size: 18px;
    color: #686868;
